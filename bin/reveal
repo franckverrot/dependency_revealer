@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'dependency_revealer'
+
+if ARGV.length > 3
+  $stderr.puts DependencyRevealer::CLI.banner
+  exit 1
+else
+  gemfile      = ARGV[0] || 'Gemfile'
+  gemfile_lock = ARGV[1] || 'Gemfile.lock'
+  attributes   = ARGV[2] || 'name,summary,homepage'
+  DependencyRevealer::CLI.new(gemfile, gemfile_lock).describe(attributes)
+end
